@@ -1,4 +1,4 @@
-# OCPP-COMPLIANCY-TEST-TOOL
+# OCPP Test Server
 
 ## Overview
 
@@ -12,20 +12,20 @@ This tool focuses on **Core Profile** test cases for Central System (CS) testing
 
 | Category | Test Cases | Status |
 |----------|------------|--------|
-| **Cold Boot Charge Point** | TC_001_CS | ? Supported |
-| **Start Charging Session** | TC_002_CS, TC_003_CS, TC_004_1_CS, TC_004_2_CS, TC_005_1_CS, TC_005_2_CS, TC_005_3_CS | ? Supported |
-| **Stop Charging Session** | TC_010_CS, TC_011_1_CS, TC_011_2_CS, TC_012_CS, TC_013_CS, TC_014_CS, TC_015_CS, TC_016_CS | ? Supported |
-| **Cache** | TC_017_1_CS, TC_017_2_CS, TC_018_1_CS, TC_018_2_CS | ? Supported |
-| **Remote Actions (Happy Flow)** | TC_019_CS, TC_021_CS, TC_023_CS, TC_024_CS | ? Supported |
-| **Resetting (Happy Flow)** | TC_026_CS, TC_027_CS, TC_028_CS | ? Supported |
-| **Unlocking (Happy Flow)** | TC_030_CS, TC_031_CS, TC_032_1_CS, TC_032_2_CS | ? Supported |
-| **Configuration (Happy Flow)** | TC_034_CS | ? Supported |
-| **Meter Values** | TC_036_CS, TC_038_CS | ? Supported |
-| **Basic Actions (Non-Happy Flow)** | TC_040_1_CS, TC_040_2_CS | ? Supported |
-| **Remote Actions (Non-Happy Flow)** | TC_042_1_CS, TC_042_2_CS | ? Supported |
-| **Unlocking (Non-Happy Flow)** | TC_054_CS, TC_055_CS | ? Supported |
-| **Power Failure (Non-Happy Flow)** | TC_062_CS | ? Supported |
-| **Offline Behavior (Non-Happy Flow)** | TC_068_CS, TC_069_CS, TC_070_CS, TC_071_CS | ? Supported |
+| **Cold Boot Charge Point** | TC_001_CS | ✅ Supported |
+| **Start Charging Session** | TC_002_CS, TC_003_CS, TC_004_1_CS, TC_004_2_CS, TC_005_1_CS, TC_005_2_CS, TC_005_3_CS | ✅ Supported |
+| **Stop Charging Session** | TC_010_CS, TC_011_1_CS, TC_011_2_CS, TC_012_CS, TC_013_CS, TC_014_CS, TC_015_CS, TC_016_CS | ✅ Supported |
+| **Cache** | TC_017_1_CS, TC_017_2_CS, TC_018_1_CS, TC_018_2_CS | ✅ Supported |
+| **Remote Actions (Happy Flow)** | TC_019_CS, TC_021_CS, TC_023_CS, TC_024_CS | ✅ Supported |
+| **Resetting (Happy Flow)** | TC_026_CS, TC_027_CS, TC_028_CS | ✅ Supported |
+| **Unlocking (Happy Flow)** | TC_030_CS, TC_031_CS, TC_032_1_CS, TC_032_2_CS | ✅ Supported |
+| **Configuration (Happy Flow)** | TC_034_CS | ✅ Supported |
+| **Meter Values** | TC_036_CS, TC_038_CS | ✅ Supported |
+| **Basic Actions (Non-Happy Flow)** | TC_040_1_CS, TC_040_2_CS | ✅ Supported |
+| **Remote Actions (Non-Happy Flow)** | TC_042_1_CS, TC_042_2_CS | ✅ Supported |
+| **Unlocking (Non-Happy Flow)** | TC_054_CS, TC_055_CS | ✅ Supported |
+| **Power Failure (Non-Happy Flow)** | TC_062_CS | ✅ Supported |
+| **Offline Behavior (Non-Happy Flow)** | TC_068_CS, TC_069_CS, TC_070_CS, TC_071_CS | ✅ Supported |
 
 ### Not Supported Test Categories
 
@@ -33,16 +33,16 @@ The following test categories from the OCTT specification are **not currently su
 
 | Category | Test Cases | Status |
 |----------|------------|--------|
-| **Configuration (Non-Happy Flow)** | TC_043_CS, TC_044_CS | ? Not Supported |
-| **Fault Behavior (Non-Happy Flow)** | TC_045_CS | ? Not Supported |
-| **Local Authorization List** | TC_046_CS, TC_047_CS, TC_048_CS | ? Not Supported |
-| **Firmware Management** | TC_049_CS, TC_050_CS, TC_051_CS | ? Not Supported |
-| **Diagnostics** | TC_052_CS, TC_053_CS | ? Not Supported |
-| **Reservation** | TC_056_CS, TC_057_CS, TC_058_CS, TC_059_CS | ? Not Supported |
-| **Remote Trigger** | TC_060_CS, TC_061_CS | ? Not Supported |
-| **Smart Charging** | TC_063_CS, TC_064_CS, TC_065_CS, TC_066_CS, TC_067_CS | ? Not Supported |
-| **Data Transfer** | TC_072_CS | ? Not Supported |
-| **Security** | TC_073_CS, TC_074_CS, TC_075_CS, TC_076_CS, TC_077_CS, TC_078_CS, TC_079_CS, TC_080_CS, TC_081_CS, TC_082_CS, TC_083_CS, TC_084_CS, TC_085_CS, TC_086_CS, TC_087_CSMS | ? Not Supported |
+| **Configuration (Non-Happy Flow)** | TC_043_CS, TC_044_CS | ❌ Not Supported |
+| **Fault Behavior (Non-Happy Flow)** | TC_045_CS | ❌ Not Supported |
+| **Local Authorization List** | TC_046_CS, TC_047_CS, TC_048_CS | ❌ Not Supported |
+| **Firmware Management** | TC_049_CS, TC_050_CS, TC_051_CS | ❌ Not Supported |
+| **Diagnostics** | TC_052_CS, TC_053_CS | ❌ Not Supported |
+| **Reservation** | TC_056_CS, TC_057_CS, TC_058_CS, TC_059_CS | ❌ Not Supported |
+| **Remote Trigger** | TC_060_CS, TC_061_CS | ❌ Not Supported |
+| **Smart Charging** | TC_063_CS, TC_064_CS, TC_065_CS, TC_066_CS, TC_067_CS | ❌ Not Supported |
+| **Data Transfer** | TC_072_CS | ❌ Not Supported |
+| **Security** | TC_073_CS, TC_074_CS, TC_075_CS, TC_076_CS, TC_077_CS, TC_078_CS, TC_079_CS, TC_080_CS, TC_081_CS, TC_082_CS, TC_083_CS, TC_084_CS, TC_085_CS, TC_086_CS, TC_087_CSMS | ❌ Not Supported |
 
 **Note**: This tool focuses on Core Profile test cases. Extended features such as Firmware Management, Diagnostics, Reservation, Smart Charging, Data Transfer, and Security profiles are not included in the current version.
 
