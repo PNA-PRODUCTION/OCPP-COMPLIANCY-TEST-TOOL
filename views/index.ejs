@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCPP Compliancy Test Runner - v<%= appVersion %></title>
+  <link rel="stylesheet" href="./user_index.css">
+  <script type="module" src="./user_index.js"></script>
+  <script>
+    // License mode from server
+    window.LICENSE_MODE = '<%= typeof licenseMode !== "undefined" ? licenseMode : "FULL" %>';
+    <% if (typeof licenseMode !== "undefined" && licenseMode === "DEMO") { %>
+    window.AVAILABLE_TEST_CASES = ['TC_000_CS', 'TC_001_CS', 'TC_002_CS', 'TC_003_CS'];
+    <% } else { %>
+    window.AVAILABLE_TEST_CASES = null;
+    <% } %>
+    
+    // 우클릭 방지
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // 선택 방지 (선택적)
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // 드래그 방지 (선택적)
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+  </script>
+</head>
+<body>
+  <div id="mainContent">
+    <!-- Header Section -->
+    <header class="header-section">
+      <div class="header-content">
+        <div class="header-top">
+          <h1 class="main-title">
+            <span class="icon">⚡</span>
+            OCPP Compliancy Test Runner
+          </h1>
+          <span class="version-badge">v<%= appVersion %></span>
+        </div>
+        <p class="subtitle">Charge Point Testing & Validation Platform</p>
+      </div>
+    </header>
+
+    <!-- Control Panel Card -->
+    <div class="card control-card">
+      <div class="card-header">
+        <h2>Test Control Panel</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="tcSelect" class="label">
+            <span class="label-icon">📋</span>
+            Select Test Case
+          </label>
+          <select id="tcSelect" class="select">
+            <option value="TC_000_CS">TC_000_CS — Normal Test (OCPP behavior monitoring - all requests accepted)</option>
+            <option value="TC_001_CS">TC_001_CS — Cold Boot Charge Point (To test if the Charge Point sends the correct messages during the boot process.)</option>
+            <option value="TC_002_CS">TC_002_CS — Cold Boot Charge Point-Pending (This scenario is used to delay the startup for a Charge Point. For example to set the correct configurations.)</option>
+            <option value="TC_003_CS">TC_003_CS — Regular Charging Session - Plugin First</option>
+            <option value="TC_004_1_CS">TC_004_1_CS — Regular Charging Session – Identification First</option>
+            <option value="TC_004_2_CS">TC_004_2_CS — Regular Charging Session – Identification First - ConnectionTimeOut</option>
+            <option value="TC_005_1_CS">TC_005_1_CS — EV Side Disconnected - StopTransactionOnEVSideDisconnect = true - UnlockConnectorOnEVSideDisconnect = true</option>
+            <option value="TC_005_2_CS">TC_005_2_CS — EV Side Disconnected - StopTransactionOnEVSideDisconnect = true - UnlockConnectorOnEVSideDisconnect = false</option>
+            <option value="TC_005_3_CS">TC_005_3_CS — EV Side Disconnected - StopTransactionOnEVSideDisconnect = false - UnlockConnectorOnEVSideDisconnect = false</option>
+            <option value="TC_010_CS">TC_010_CS — Remote Start Charging Session - Cable Plugged in First</option>
+            <option value="TC_011_1_CS">TC_011_1_CS — Remote Start Charging Session - Remote Start First</option>
+            <option value="TC_011_2_CS">TC_011_2_CS — Remote Start Charging Session - Time Out</option>
+            <option value="TC_012_CS">TC_012_CS — Remote Stop Charging Session</option>
+            <option value="TC_013_CS">TC_013_CS — Hard Reset Without transaction</option>
+            <option value="TC_014_CS">TC_014_CS — Soft Reset Without Transaction</option>
+            <option value="TC_015_CS">TC_015_CS — Hard Reset With Transaction</option>
+            <option value="TC_016_CS">TC_016_CS — Soft Reset With Transaction</option>
+            <option value="TC_017_1_CS">TC_017_1_CS — Unlock connector - no charging session running (Not fixed cable)</option>
+            <option value="TC_017_2_CS">TC_017_2_CS — Unlock connector - no charging session running (Fixed cable)</option>
+            <option value="TC_018_1_CS">TC_018_1_CS — Unlock Connector - With Charging Session (Not fixed cable)</option>
+            <option value="TC_018_2_CS">TC_018_2_CS — Unlock Connector - With Charging Session (Fixed cable)</option>
+            <option value="TC_019_CS">TC_019_CS — Retrieve configuration</option>
+            <option value="TC_021_CS">TC_021_CS — Change/set Configuration</option>
+            <option value="TC_023_CS">TC_023_CS — Start Charging Session - Authorize invalid</option>
+            <option value="TC_024_CS">TC_024_CS — Connector Lock Failure</option>
+            <option value="TC_026_CS">TC_026_CS — Remote Start Charging Session - Rejected</option>
+            <option value="TC_027_CS">TC_027_CS — Remote start transaction - connector id shall not be 0</option>
+            <option value="TC_028_CS">TC_028_CS — Remote Stop Transaction - Rejected</option>
+            <option value="TC_030_CS">TC_030_CS — Unlock Connector - Unlock Failure</option>
+            <option value="TC_031_CS">TC_031_CS — Unlock Connector - Unknown Connector</option>
+            <option value="TC_032_1_CS">TC_032_1_CS — Power failure boot charging point - configured to stop transaction(s) before going down</option>
+            <option value="TC_032_2_CS">TC_032_2_CS — Power failure boot charging point-configured to stop transaction(s)</option>
+            <option value="TC_034_CS">TC_034_CS — Power Failure with Unavailable Status</option>
+            <option value="TC_036_CS">TC_036_CS — Connection Loss During Transaction</option>
+            <option value="TC_038_CS">TC_038_CS — Offline Stop Transaction</option>
+            <option value="TC_040_1_CS">TC_040_1_CS — Configuration key - NotSupported</option>
+            <option value="TC_040_2_CS">TC_040_2_CS — Configuration key - Invalid value</option>
+            <option value="TC_042_1_CS">TC_042_1_CS — Get Local List Version (not supported)</option>
+            <option value="TC_042_2_CS">TC_042_2_CS — Get Local List Version (empty)</option>
+            <option value="TC_054_CS">TC_054_CS — Trigger Message</option>
+            <option value="TC_055_CS">TC_055_CS — Trigger Message - Rejected</option>
+            <option value="TC_062_CS">TC_062_CS — Data Transfer to a Charge Point</option>
+            <option value="TC_068_CS">TC_068_CS — Stop transaction - IdTag in StopTransaction matches IdTag in StartTransaction</option>
+            <option value="TC_069_CS">TC_069_CS — Stop transaction - ParentIdTag in StopTransaction matches ParentIdTag in StartTransaction</option>
+            <option value="TC_070_CS">TC_070_CS — Sampled Meter Values</option>
+            <option value="TC_071_CS">TC_071_CS — Clock-aligned Meter Values</option>
+          </select>
+        </div>
+
+        <div class="buttons">
+          <button class="btn btn-primary" id="Btn_Start">
+            <span class="btn-icon">▶</span>
+            <span>TEST START</span>
+          </button>
+          <button class="btn btn-danger" id="Btn_Stop">
+            <span class="btn-icon">⏹</span>
+            <span>TEST STOP</span>
+          </button>
+          <button class="btn btn-secondary" id="Btn_Clear">
+            <span class="btn-icon">🗑️</span>
+            <span>CLEAR LOG</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages Log Card -->
+    <div class="card log-card">
+      <div class="log-header">
+        <div class="log-header-left">
+          <span class="log-icon">💬</span>
+          <span>Messages</span>
+          <span class="log-count" id="logCount">0</span>
+        </div>
+        <div class="log-header-right">
+          <button class="btn-icon-small" id="Btn_SaveLog" title="Save Messages to File">
+            <span>💾</span>
+            <span>Save</span>
+          </button>
+        </div>
+      </div>
+      <pre id="msgArea" class="log-body"></pre>
+    </div>
+
+    <!-- Test Description Card -->
+    <div class="card description">
+      <div class="description-header">
+        <span class="desc-icon">📖</span>
+        <span>Test Description</span>
+      </div>
+      <div class="description-body" id="msgDescription">
+        <img id="descImage" src="" alt="Test Description" style="max-width:100%; max-height:100%; object-fit:contain;">
+      </div>
+    </div>
+
+    <!-- Message Layer (Modal) -->
+    <div id="messageLayer" class="message-layer">
+      <div class="message-box">
+        <div class="message-icon" id="messageIcon"></div>
+        <p id="messageText"></p>
+        <button id="messageOkBtn" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <img src="./demo_images/pna_logo.png" id="pna_logo" alt="PNA Logo">
+      <p class="footer-text">OCPP Test Server v<%= appVersion %></p>
+    </footer>
+  </div>
+</body>
+</html>
