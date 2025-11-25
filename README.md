@@ -117,6 +117,15 @@ You can customize the test tool behavior by editing the config.json file.
 
 - If the application doesn't start: Try running as Administrator.
 
+# OCPP 1.6 Compliance Test Tool
+A full-featured OCPP 1.6 Core Profile test tool for charging stations.  
+This tool helps EV charger manufacturers validate OCPP messages and automate official certification-style test sequences.
+OCPP 1.6 certification
+OCPP compliance testing
+OCPP EV charger testing
+Open Charge Point Protocol test tool
+Charge Station (CS) → Central System (CSMS) testing
+
 ## Contact
 
 For purchase inquiries and technical support, please contact:
